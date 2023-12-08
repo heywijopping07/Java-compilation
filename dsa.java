@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */ 
-package main;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
-/**
- *
- * @author EdWin
- */
+
 public class dsa {   
     //for nodes
     static class Node {
@@ -88,20 +80,23 @@ public class dsa {
         }
     }
     //for queue ciphertext
-    private static String encrypt(String plaintext, int k){
+    
+    public static String encrypt(String plaintext, int k) {
         StringBuilder encryptedText = new StringBuilder();
-        for(int i=0; i<plaintext.length(); i++){
+
+        for (int i = 0; i < plaintext.length(); i++) {
             char currentChar = plaintext.charAt(i);
-            if(Character.isLetter(currentChar)){
-                char encryptedChar = (char)
-                        ((currentChar-'A'+k)% 26+'A');
-                        encryptedText.append(encryptedChar);
+
+            if (Character.isLetter(currentChar)) {
+                char encryptedChar = (char) ((currentChar - 'A' + k) % 26 + 'A');
+                encryptedText.append(encryptedChar);
             } else {
                 encryptedText.append(currentChar);
             }
         }
-        return null;
+        return encryptedText.toString();
     }
+    
      //for graphs
     static class Graph {
     // inner class
@@ -129,7 +124,9 @@ public class dsa {
     
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
+        char exitProgram = 'y';
+        
+       while(exitProgram=='y') {
         System.out.println("----------------------------------------");
         System.out.print("\t    Portfolio in DSA");
         System.out.println("\n\tWindy Pausanos - BSIS 202");
@@ -141,11 +138,11 @@ public class dsa {
         System.out.println("[4] Queue ");
         System.out.println("[5] Tree ");
         System.out.println("[6] Binary Tree ");
-        System.out.println("[7] Graph ");
+        System.out.println("[7] Graph ");        
         System.out.println("----------------------------------------");
         System.out.print("Choose a number you want to open: ");
         int choice = in.nextInt();
-
+        System.out.println("----------------------------------------");
         switch (choice) {
             case 1: {
                 System.out.println("\nList ");
@@ -208,12 +205,12 @@ public class dsa {
                 Stack<Integer> stack = new Stack<>();
 
                 while (true) {
-                    System.out.println("STACK OPERATIONS");
+                    System.out.println("\nSTACK OPERATIONS");
                     System.out.println("[1] - Push");
                     System.out.println("[2] - Pop");
                     System.out.println("[3] - Print");
                     System.out.println("[4] - Top");
-                    System.out.println("[0] - Exit");
+                    System.out.println("[5] - Exit");
                     System.out.print("ENTER YOUR CHOICE: ");
                     int ch = in.nextInt();
 
@@ -222,7 +219,7 @@ public class dsa {
                             System.out.print("ENTER THE ELEMENT TO PUSH: ");
                             int element = in.nextInt();
                             stack.push(element);
-                            System.out.println(element + " got pushed onto the stack. \n");
+                            System.out.println(element + " got pushed onto the stack. ");
                             break;
                         }
                         case 2: {
@@ -247,35 +244,35 @@ public class dsa {
                             break;
                         }
                         case 4: {
-                            System.out.println("Top: \n " + stack.peek());
+                            System.out.println("Top: " + stack.peek());
                             break;
                         }
-                        case 0: {
+                        case 5: {
                             System.out.println("Exiting Stack operations.");
                             System.exit(0);
+                            break;
                         }
                         default:
                             System.out.print("\nInvalid input!!\n");
-                            break;
+                           break;
                     }
-                }
+                } 
             }
                
             case 4: {
-                System.out.println("\nQueue ");                     
-                        System.out.println("Cipher Text");
-                        System.out.print("Enter the plaintext: ");
-                        String plaintext = in.nextLine().toUpperCase();
-                        System.out.print("\nEnter the value of k: ");
-                        int k = in.nextInt();
-                        System.out.println("----------------------------------------");
-                        String ciphertext = encrypt(plaintext, k);
-                        System.out.println("Ciphertext: "+ ciphertext); //the output
-                        System.out.println("Cipher Done ");
-                        in.close();                             
+                System.out.println("\nQueue ");
+                System.out.print("Enter the plaintext: "); // input
+                in.nextLine(); // consume the newline character
+                String plaintext = in.nextLine().toUpperCase();
+                System.out.print("Enter the value of k: "); // input
+                int k = in.nextInt();
+              
+                String ciphertext = encrypt(plaintext, k);
+                System.out.println("Ciphertext: " + ciphertext); // output
+                System.out.println("Cipher Done.");
                 break;
             }
-            
+             
             case 5: {
                 System.out.println("\nTree ");
                 Tree tree = new Tree();
@@ -336,7 +333,7 @@ public class dsa {
                 int noVertices = 10;
                 int noEdges = 13;
                 
-                Main.Tree.Graph g = new Main.Tree.Graph(noVertices, noEdges);
+                Graph g = new Graph(noVertices, noEdges);
                 // create graph
                 g.edge[0].src = 1; // edge 1---2
                 g.edge[0].dest = 2;
@@ -371,9 +368,17 @@ public class dsa {
                 }
                 break;
             }
+            
             default:
-                System.out.println("\nInvalid input!! ");
-        }
+                System.out.println("Invalid input!! \n");
+                System.out.println(">>>Thank you for using the DSA program!<<<");
+          }
+        System.out.println("----------------------------------------");
+        System.out.print("\nDo you want to continue using the program? ");
+        exitProgram = in.next().charAt(0);
+         
+        }  
     }
 }
+
 
